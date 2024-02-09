@@ -1,0 +1,85 @@
+<ion-header collapse="fade" [translucent]="true">
+  <ion-toolbar color="dark">
+    <ion-title color="light"
+      >{{(employee$ | async)?.Name}} "{{(employee$ | async)?.UserID}}"
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row class="first-row">
+      <ion-col>
+        <ion-row class="center">
+          <ion-text>Artcode:&nbsp;&nbsp;</ion-text>
+          <ion-input
+            placeholder="Enter Artikelcode"
+            [(ngModel)]="artcode"
+          ></ion-input>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-row class="center">
+          <ion-text>Label:&nbsp;&nbsp;</ion-text>
+          <ion-input
+            placeholder="Enter label"
+            expand="block"
+            [(ngModel)]="label"
+          ></ion-input>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+    <ion-row
+      ><ion-col
+        ><ion-row class="center"
+          ><ion-text>Opmerking:&nbsp;&nbsp;</ion-text
+          ><ion-textarea
+            placeholder="Artikel Opmerking"
+            [(ngModel)]="description"
+          ></ion-textarea></ion-row></ion-col
+    ></ion-row>
+    <hr>
+    <ion-row>
+      <ion-col>
+        <ion-row class="center f-lg">
+          <ion-text>Prijs:&nbsp;&nbsp;</ion-text>
+          <ion-input placeholder="SKU prijs" [(ngModel)]="price"></ion-input>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-row class="center f-lg">
+          <ion-text>Aktie:&nbsp;&nbsp;</ion-text>
+          <ion-input
+            placeholder="SKU aktie prijs"
+            [(ngModel)]="newprice"
+          ></ion-input>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+
+    <div class="button-row">
+      <ion-row>
+        <ion-col>
+          <ion-button
+            color="secondary"
+            expand="block"
+            size="large"
+            (click)="handleSearchClick($event)"
+            >Zoeken</ion-button
+          >
+          <ion-button
+            color="danger"
+            expand="block"
+            size="large"
+            (click)="handleScanClick($event)"
+            >SCAN</ion-button
+          >
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-grid>
+</ion-content>

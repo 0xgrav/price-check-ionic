@@ -1,0 +1,7 @@
+{
+	"appId": "com.price.check",
+	"appName": "Price Check",
+	"webDir": "www",
+	"bundledWebRuntime": false,
+	"ios": { "scheme": "Retail Textile" }
+}

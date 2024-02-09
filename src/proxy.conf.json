@@ -1,0 +1,8 @@
+{
+	"/TextileAPI_ADTnNonADT/*": {
+		"target": "http://155.155.2.23",
+		"secure": false,
+		"changeOrigin": true,
+		"logLevel": "debug"
+	}
+}

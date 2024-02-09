@@ -1,0 +1,68 @@
+:host {
+
+
+  ion-list {
+    background-color: var(--ion-color-primary);
+  }
+
+  // ion-item {
+  //   --background: transparent;
+  //   --color: white;
+  //   --border: white;
+  // }
+
+  ion-input {    --background: white;    // flex:0.5;
+  }
+
+  ion-text {
+    color: white;
+  }
+
+  ion-grid,
+  ion-row,
+  ion-col {
+    padding: 0;
+  }
+
+  .flex {
+    display: flex;
+  }
+
+  .flex-1 {
+    flex: 1;
+  }
+
+  .h-full {
+    height: 92%;
+  }
+
+  .p-b-20 {
+    padding-bottom: 20px;
+  }
+}
+
+.ion-padding {
+  padding: 30px;
+  padding-top: 60px;
+}
+
+.button-native {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+}
+
+// ion-button {
+//   --padding: 50px;
+// }
+
+// ion-row {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// }
+
+// ion-col {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// }

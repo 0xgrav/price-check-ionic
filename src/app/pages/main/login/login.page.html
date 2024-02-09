@@ -1,0 +1,79 @@
+<ion-header collapse="fade" [translucent]="true">
+  <ion-toolbar color="dark">
+    <ion-title color="light" class="ion-text-center">
+      Price Check App
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="ion-padding">
+    <!-- Skeletons -->
+    <ion-grid class="p-b-20">
+      <ion-row class="ion-align-items-center ion-justify-content-between">
+        <ion-text for="userid" class="bold">User ID:&nbsp;&nbsp;</ion-text>
+        <ion-input #IDInput id="userid" placeholder="Enter verkoper nummer" type="text"
+          [(ngModel)]="userid"></ion-input>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col class="flex">
+          <ion-button class="flex-1" (click)="handleButtonClick($event)">7</ion-button>
+        </ion-col>
+        <ion-col class="flex">
+          <ion-button class="flex-1" (click)="handleButtonClick($event)">8</ion-button>
+        </ion-col>
+        <ion-col class="flex">
+          <ion-button class="flex-1" (click)="handleButtonClick($event)">9</ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="flex">
+          <ion-button class="flex-1" (click)="handleButtonClick($event)">4</ion-button>
+        </ion-col>
+        <ion-col class="flex">
+          <ion-button class="flex-1" (click)="handleButtonClick($event)">5</ion-button>
+        </ion-col>
+        <ion-col class="flex">
+          <ion-button class="flex-1" (click)="handleButtonClick($event)">6</ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="flex">
+          <ion-button class="flex-1" (click)="handleButtonClick($event)">1</ion-button>
+        </ion-col>
+        <ion-col class="flex">
+          <ion-button class="flex-1" (click)="handleButtonClick($event)">2</ion-button>
+        </ion-col>
+        <ion-col class="flex">
+          <ion-button class="flex-1" (click)="handleButtonClick($event)">3</ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-row><ion-col class="flex"><ion-button class="flex-1"
+                    (click)="handleButtonClick($event)">0</ion-button></ion-col></ion-row>
+              <ion-row><ion-col class="flex"><ion-button class="flex-1" (click)="handleButtonClick($event)"><ion-icon
+                      name="arrow-back"></ion-icon></ion-button></ion-col></ion-row>
+            </ion-col>
+            <ion-col>
+              <ion-row><ion-col class="flex"><ion-button class="flex-1"
+                    (click)="handleButtonClick($event)">.</ion-button></ion-col></ion-row>
+              <ion-row><ion-col class="flex"><ion-button class="flex-1"
+                    (click)="handleButtonClick($event)">CLEAR</ion-button></ion-col></ion-row>
+            </ion-col>
+            <ion-col class="flex">
+              <ion-button class="flex-1 h-full" (click)="handleButtonClick($event)">ENTER</ion-button>
+            </ion-col>
+            <!-- <img src="../../../../assets/TextileApi.wsdl" -->
+          </ion-row>
+        </ion-grid>
+      </ion-row>
+    </ion-grid>
+    <!-- <hr /> -->
+  </div>
+</ion-content>

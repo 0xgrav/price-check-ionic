@@ -1,0 +1,13 @@
+{
+  "name": "Price Check",
+  "integrations": {
+    "capacitor": {}
+  },
+  "proxies": [
+    {
+      "path": "",
+      "proxyUrl": "http://155.155.2.23/MSTextile/TextileApi.php?WSDL"
+    }
+  ],
+  "type": "angular"
+}

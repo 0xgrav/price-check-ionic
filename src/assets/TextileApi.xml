@@ -1,0 +1,702 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://localhost/MSTextile_Print" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://localhost/MSTextile_Print" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://localhost/MSTextile_Print">
+      <s:element name="GetEmployee">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEmployeeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEmployeeResult" type="tns:Employee" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Employee">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetDateTime">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetDateTimeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDateTimeResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEmployees">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetEmployeesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEmployeesResult" type="tns:ArrayOfEmployee" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfEmployee">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Employee" nillable="true" type="tns:Employee" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetOrdersForSaleman">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="salemanId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOrdersForSalemanResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetOrdersForSalemanResult" type="tns:ArrayOfOrder" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfOrder">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Order" nillable="true" type="tns:Order" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Order">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="orderLines" type="tns:ArrayOfOrderLine" />
+          <s:element minOccurs="0" maxOccurs="1" name="employee" type="tns:Employee" />
+          <s:element minOccurs="0" maxOccurs="1" name="barcode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="number" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="total" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="dateTime" type="s:string" />
+		  <s:element minOccurs="0" maxOccurs="1" name="printer" type="s:string" />
+		  <s:element minOccurs="0" maxOccurs="1" name="btw_perc" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfOrderLine">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="OrderLine" nillable="true" type="tns:OrderLine" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="OrderLine">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="product" type="tns:Product" />
+          <s:element minOccurs="1" maxOccurs="1" name="quantity" type="s:decimal" />
+		  <s:element minOccurs="1" maxOccurs="1" name="pieces" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="total" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Product">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SCANNED_BARCODE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LABEL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ART_CODE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="details" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="prijs" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="NewPrijs" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="AFDE" type="s:string" />
+		  <s:element minOccurs="0" maxOccurs="1" name="BeginDateTime" type="s:string" />
+		  <s:element minOccurs="0" maxOccurs="1" name="EndDateTime" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetOrderLines">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="barcode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOrderLinesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetOrderLinesResult" type="tns:ArrayOfOrderLine" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProduct">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="barcode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProductResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProductResult" type="tns:Product" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddOrder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="order" type="tns:Order" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddOrderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddOrderResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PrintDublicate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="order" type="tns:Order" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PrintDublicateResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="TestPrint">
+        <s:complexType />
+      </s:element>
+      <s:element name="TestPrintResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="Employee" nillable="true" type="tns:Employee" />
+      <s:element name="ArrayOfEmployee" nillable="true" type="tns:ArrayOfEmployee" />
+      <s:element name="ArrayOfOrder" nillable="true" type="tns:ArrayOfOrder" />
+      <s:element name="ArrayOfOrderLine" nillable="true" type="tns:ArrayOfOrderLine" />
+      <s:element name="Product" nillable="true" type="tns:Product" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetEmployeeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEmployee" />
+  </wsdl:message>
+  <wsdl:message name="GetEmployeeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEmployeeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEmployeesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEmployees" />
+  </wsdl:message>
+  <wsdl:message name="GetEmployeesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEmployeesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDateTimeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDateTime" />
+  </wsdl:message>
+  <wsdl:message name="GetDateTimeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDateTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetOrdersForSalemanSoapIn">
+    <wsdl:part name="parameters" element="tns:GetOrdersForSaleman" />
+  </wsdl:message>
+  <wsdl:message name="GetOrdersForSalemanSoapOut">
+    <wsdl:part name="parameters" element="tns:GetOrdersForSalemanResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderLinesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetOrderLines" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderLinesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetOrderLinesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProductSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProduct" />
+  </wsdl:message>
+  <wsdl:message name="GetProductSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProductResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddOrderSoapIn">
+    <wsdl:part name="parameters" element="tns:AddOrder" />
+  </wsdl:message>
+  <wsdl:message name="AddOrderSoapOut">
+    <wsdl:part name="parameters" element="tns:AddOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="PrintDublicateSoapIn">
+    <wsdl:part name="parameters" element="tns:PrintDublicate" />
+  </wsdl:message>
+  <wsdl:message name="PrintDublicateSoapOut">
+    <wsdl:part name="parameters" element="tns:PrintDublicateResponse" />
+  </wsdl:message>
+  <wsdl:message name="TestPrintSoapIn">
+    <wsdl:part name="parameters" element="tns:TestPrint" />
+  </wsdl:message>
+  <wsdl:message name="TestPrintSoapOut">
+    <wsdl:part name="parameters" element="tns:TestPrintResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEmployeeHttpGetIn">
+    <wsdl:part name="userID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetEmployeeHttpGetOut">
+    <wsdl:part name="Body" element="tns:Employee" />
+  </wsdl:message>
+  <wsdl:message name="GetEmployeesHttpGetIn" />
+  <wsdl:message name="GetEmployeesHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfEmployee" />
+  </wsdl:message>
+  <wsdl:message name="GetDateTimeHttpGetIn" />
+  <wsdl:message name="GetDateTimeHttpGetOut">
+    <wsdl:part name="Body" element="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetOrdersForSalemanHttpGetIn">
+    <wsdl:part name="salemanId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetOrdersForSalemanHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfOrder" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderLinesHttpGetIn">
+    <wsdl:part name="barcode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderLinesHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfOrderLine" />
+  </wsdl:message>
+  <wsdl:message name="GetProductHttpGetIn">
+    <wsdl:part name="barcode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetProductHttpGetOut">
+    <wsdl:part name="Body" element="tns:Product" />
+  </wsdl:message>
+  <wsdl:message name="TestPrintHttpGetIn" />
+  <wsdl:message name="TestPrintHttpGetOut" />
+  <wsdl:message name="GetEmployeeHttpPostIn">
+    <wsdl:part name="userID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetEmployeeHttpPostOut">
+    <wsdl:part name="Body" element="tns:Employee" />
+  </wsdl:message>
+  <wsdl:message name="GetEmployeesHttpPostIn" />
+  <wsdl:message name="GetEmployeesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfEmployee" />
+  </wsdl:message>
+  <wsdl:message name="GetDateTimeHttpPostIn" />
+  <wsdl:message name="GetDateTimeHttpPostOut">
+    <wsdl:part name="Body" element="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetOrdersForSalemanHttpPostIn">
+    <wsdl:part name="salemanId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetOrdersForSalemanHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfOrder" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderLinesHttpPostIn">
+    <wsdl:part name="barcode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderLinesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfOrderLine" />
+  </wsdl:message>
+  <wsdl:message name="GetProductHttpPostIn">
+    <wsdl:part name="barcode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetProductHttpPostOut">
+    <wsdl:part name="Body" element="tns:Product" />
+  </wsdl:message>
+  <wsdl:message name="TestPrintHttpPostIn" />
+  <wsdl:message name="TestPrintHttpPostOut" />
+  <wsdl:portType name="TextileApiSoap">
+    <wsdl:operation name="GetEmployee">
+      <wsdl:input message="tns:GetEmployeeSoapIn" />
+      <wsdl:output message="tns:GetEmployeeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployees">
+      <wsdl:input message="tns:GetEmployeesSoapIn" />
+      <wsdl:output message="tns:GetEmployeesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDateTime">
+      <wsdl:input message="tns:GetDateTimeSoapIn" />
+      <wsdl:output message="tns:GetDateTimeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrdersForSaleman">
+      <wsdl:input message="tns:GetOrdersForSalemanSoapIn" />
+      <wsdl:output message="tns:GetOrdersForSalemanSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderLines">
+      <wsdl:input message="tns:GetOrderLinesSoapIn" />
+      <wsdl:output message="tns:GetOrderLinesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProduct">
+      <wsdl:input message="tns:GetProductSoapIn" />
+      <wsdl:output message="tns:GetProductSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddOrder">
+      <wsdl:input message="tns:AddOrderSoapIn" />
+      <wsdl:output message="tns:AddOrderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PrintDublicate">
+      <wsdl:input message="tns:PrintDublicateSoapIn" />
+      <wsdl:output message="tns:PrintDublicateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TestPrint">
+      <wsdl:input message="tns:TestPrintSoapIn" />
+      <wsdl:output message="tns:TestPrintSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="TextileApiHttpGet">
+    <wsdl:operation name="GetEmployee">
+      <wsdl:input message="tns:GetEmployeeHttpGetIn" />
+      <wsdl:output message="tns:GetEmployeeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployees">
+      <wsdl:input message="tns:GetEmployeesHttpGetIn" />
+      <wsdl:output message="tns:GetEmployeesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDateTime">
+      <wsdl:input message="tns:GetDateTimeHttpGetIn" />
+      <wsdl:output message="tns:GetDateTimeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrdersForSaleman">
+      <wsdl:input message="tns:GetOrdersForSalemanHttpGetIn" />
+      <wsdl:output message="tns:GetOrdersForSalemanHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderLines">
+      <wsdl:input message="tns:GetOrderLinesHttpGetIn" />
+      <wsdl:output message="tns:GetOrderLinesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProduct">
+      <wsdl:input message="tns:GetProductHttpGetIn" />
+      <wsdl:output message="tns:GetProductHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TestPrint">
+      <wsdl:input message="tns:TestPrintHttpGetIn" />
+      <wsdl:output message="tns:TestPrintHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="TextileApiHttpPost">
+    <wsdl:operation name="GetEmployee">
+      <wsdl:input message="tns:GetEmployeeHttpPostIn" />
+      <wsdl:output message="tns:GetEmployeeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployees">
+      <wsdl:input message="tns:GetEmployeesHttpPostIn" />
+      <wsdl:output message="tns:GetEmployeesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDateTime">
+      <wsdl:input message="tns:GetDateTimeHttpPostIn" />
+      <wsdl:output message="tns:GetDateTimeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrdersForSaleman">
+      <wsdl:input message="tns:GetOrdersForSalemanHttpPostIn" />
+      <wsdl:output message="tns:GetOrdersForSalemanHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderLines">
+      <wsdl:input message="tns:GetOrderLinesHttpPostIn" />
+      <wsdl:output message="tns:GetOrderLinesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProduct">
+      <wsdl:input message="tns:GetProductHttpPostIn" />
+      <wsdl:output message="tns:GetProductHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TestPrint">
+      <wsdl:input message="tns:TestPrintHttpPostIn" />
+      <wsdl:output message="tns:TestPrintHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TextileApiSoap" type="tns:TextileApiSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetEmployee">
+      <soap:operation soapAction="http://localhost/MSTextile_Print/GetEmployee" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployees">
+      <soap:operation soapAction="http://localhost/MSTextile_Print/GetEmployees" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDateTime">
+      <soap:operation soapAction="http://localhost/MSTextile_Print/GetDateTime" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrdersForSaleman">
+      <soap:operation soapAction="http://localhost/MSTextile_Print/GetOrdersForSaleman" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderLines">
+      <soap:operation soapAction="http://localhost/MSTextile_Print/GetOrderLines" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProduct">
+      <soap:operation soapAction="http://localhost/MSTextile_Print/GetProduct" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddOrder">
+      <soap:operation soapAction="http://localhost/MSTextile_Print/AddOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PrintDublicate">
+      <soap:operation soapAction="http://localhost/MSTextile_Print/PrintDublicate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestPrint">
+      <soap:operation soapAction="http://localhost/MSTextile_Print/TestPrint" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TextileApiSoap12" type="tns:TextileApiSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetEmployee">
+      <soap12:operation soapAction="http://localhost/MSTextile_Print/GetEmployee" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployees">
+      <soap12:operation soapAction="http://localhost/MSTextile_Print/GetEmployees" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDateTime">
+      <soap12:operation soapAction="http://localhost/MSTextile_Print/GetDateTime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrdersForSaleman">
+      <soap12:operation soapAction="http://localhost/MSTextile_Print/GetOrdersForSaleman" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderLines">
+      <soap12:operation soapAction="http://localhost/MSTextile_Print/GetOrderLines" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProduct">
+      <soap12:operation soapAction="http://localhost/MSTextile_Print/GetProduct" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddOrder">
+      <soap12:operation soapAction="http://localhost/MSTextile_Print/AddOrder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PrintDublicate">
+      <soap12:operation soapAction="http://localhost/MSTextile_Print/PrintDublicate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestPrint">
+      <soap12:operation soapAction="http://localhost/MSTextile_Print/TestPrint" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TextileApiHttpGet" type="tns:TextileApiHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="GetEmployee">
+      <http:operation location="/GetEmployee" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployees">
+      <http:operation location="/GetEmployees" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDateTime">
+      <http:operation location="/GetDateTime" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrdersForSaleman">
+      <http:operation location="/GetOrdersForSaleman" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderLines">
+      <http:operation location="/GetOrderLines" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProduct">
+      <http:operation location="/GetProduct" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestPrint">
+      <http:operation location="/TestPrint" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TextileApiHttpPost" type="tns:TextileApiHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="GetEmployee">
+      <http:operation location="/GetEmployee" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployees">
+      <http:operation location="/GetEmployees" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDateTime">
+      <http:operation location="/GetDateTime" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrdersForSaleman">
+      <http:operation location="/GetOrdersForSaleman" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderLines">
+      <http:operation location="/GetOrderLines" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProduct">
+      <http:operation location="/GetProduct" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestPrint">
+      <http:operation location="/TestPrint" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MSTextile_Print">
+    <wsdl:port name="TextileApiSoap" binding="tns:TextileApiSoap">
+      <soap:address location="http://155.155.2.23/MSTextile_Print/TextileApi.php" />
+    </wsdl:port>
+    <wsdl:port name="TextileApiSoap12" binding="tns:TextileApiSoap12">
+      <soap12:address location="http://155.155.2.23/MSTextile_Print/TextileApi.php" />
+    </wsdl:port>
+    <wsdl:port name="TextileApiHttpGet" binding="tns:TextileApiHttpGet">
+      <http:address location="http://155.155.2.23/MSTextile_Print/TextileApi.php" />
+    </wsdl:port>
+    <wsdl:port name="TextileApiHttpPost" binding="tns:TextileApiHttpPost">
+      <http:address location="http://155.155.2.23/MSTextile_Print/TextileApi.php" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
